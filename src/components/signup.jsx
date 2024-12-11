@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -6,6 +7,8 @@ const SignupPage = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();  // To navigate to login page after successful signup
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,7 +18,16 @@ const SignupPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data Submitted: ", formData);
-    // Add your logic for form submission here
+
+    // Store user data in localStorage (in a simple object format)
+    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+    existingUsers.push(formData);
+
+    localStorage.setItem("users", JSON.stringify(existingUsers));
+    alert("Signup successful! You can now login.");
+
+    // Redirect to login page
+    navigate("/signin");
   };
 
   return (

@@ -1,12 +1,12 @@
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-// import Work from './components/upload'
+import Work from './components/upload'
 import SignInPage from './components/signin'
 import SignupPage from './components/signup'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import ImageGenerationPage from './components/generator';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -18,6 +18,8 @@ function App() {
         <Route path = "/" element={<SignInPage/>} />   
         <Route path="/signup" element={<SignupPage/>} />
         <Route path="/signin" element={<SignInPage/>} /> 
+        <Route path="/upload" element={<Work/>} />
+        <Route path="/generator" element={<ImageGenerationPage/>} />
     </Routes>
   </Router>
   )

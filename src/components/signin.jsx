@@ -1,15 +1,40 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignInPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null); // For error messages
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login attempt with:', { email, password });
+    setError(null); // Reset error state before attempting login
+
+    // Log email and password to check if they are passed correctly
+    console.log("Attempting login with:", { email, password });
+
+    try {
+      if (!email || !password) {
+        throw new Error("Please enter both email and password");
+      }
+
+      // Retrieve user data from localStorage (stored by the signup page)
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+
+      if (storedUser && storedUser.email === email && storedUser.password === password) {
+        console.log("Login successful!");
+        // Redirect to the next page (e.g., /upload) upon successful login
+        navigate('/upload');
+      } else {
+        setError("Invalid email or password.");
+      }
+    } catch (err) {
+      console.error("Login failed:", err.message);
+      setError(err.message); // Display the error message
+    }
   };
 
-  // Background molecule animation components
   const AnimatedBackground = () => {
     const shapes = [
       { size: 'w-20 h-20', color: 'bg-blue-200', animationDelay: 'delay-200' },
@@ -38,7 +63,6 @@ const SignInPage = () => {
 
   return (
     <div className="fixed inset-0 bg-gray-50 flex items-center justify-center">
-      {/* Animated Background */}
       <AnimatedBackground />
 
       <div className="w-full max-w-md px-4 z-10 relative">
@@ -52,9 +76,12 @@ const SignInPage = () => {
             </p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-6">
+            {error && (
+              <p className="text-red-500 text-sm">{error}</p> // Display error message if login fails
+            )}
             <div>
-              <label 
-                htmlFor="email" 
+              <label
+                htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
                 Email Address
@@ -71,8 +98,8 @@ const SignInPage = () => {
               />
             </div>
             <div>
-              <label 
-                htmlFor="password" 
+              <label
+                htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
                 Password
@@ -102,9 +129,9 @@ const SignInPage = () => {
           </form>
           <div className="text-center">
             <p className="mt-2 text-sm text-gray-600">
-              Don't have an account? {' '}
-              <a 
-                href="/signup" 
+              Don't have an account?{' '}
+              <a
+                href="/signup"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
                 Sign up

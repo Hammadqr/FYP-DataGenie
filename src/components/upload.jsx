@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { LayoutGrid, Upload, Moon, Bell, Info } from 'lucide-react';
 import pexelsImage from '../assets/pexels1.jpg'; // Adjust the path as necessary
+import { useNavigate } from "react-router-dom";
 
 const Work = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -9,7 +10,7 @@ const Work = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [prompt, setPrompt] = useState('');
   const [storedPrompts, setStoredPrompts] = useState([]);
-
+  const navigate = useNavigate();
   // Ref for the hidden file input
   const fileInputRef = useRef(null);
 
@@ -122,11 +123,14 @@ const Work = () => {
             onChange={(e) => setPrompt(e.target.value)}
           />
           <button
-            onClick={handleStorePrompt}
-            className="mt-4 bg-green-600 dark:bg-green-700 text-white py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors flex items-center justify-center space-x-2"
-          >
-            <span>Store Prompt</span>
-          </button>
+  onClick={() => {
+    handleStorePrompt(); // This will store the prompt
+    navigate('/generator'); // Navigate to the generator page
+  }}
+  className="mt-4 bg-green-600 dark:bg-green-700 text-white py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors flex items-center justify-center space-x-2"
+>
+  <span>Store Prompt</span>
+</button>
         </div>
 
         {/* Settings Section */}
