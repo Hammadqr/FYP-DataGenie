@@ -147,7 +147,7 @@ const Work = () => {
                 aria-label="Toggle Advanced Mode"
                 className={`w-12 h-6 rounded-full transition-colors ${
                   advancedMode ? 'bg-purple-600' : 'bg-gray-300 dark:bg-gray-500'
-                } relative`}
+                } relative flex items-center px-0`}
               >
                 <div
                   className={`w-4 h-4 rounded-full bg-white absolute top-1 transition-transform ${
@@ -168,11 +168,11 @@ const Work = () => {
                 aria-label="Toggle Dark Mode"
                 className={`w-12 h-6 rounded-full transition-colors ${
                   darkMode ? 'bg-purple-600' : 'bg-gray-300 dark:bg-gray-500'
-                } relative`}
+                } relative flex items-center px-1`}
               >
                 <div
                   className={`w-4 h-4 rounded-full bg-white absolute top-1 transition-transform ${
-                    darkMode ? 'translate-x-6' : 'translate-x-1'
+                    darkMode ? 'translate-x-6' : 'translate-x-0'
                   }`}
                 />
               </button>
@@ -189,14 +189,15 @@ const Work = () => {
                 aria-label="Toggle Notifications"
                 className={`w-12 h-6 rounded-full transition-colors ${
                   notifications ? 'bg-purple-600' : 'bg-gray-300 dark:bg-gray-500'
-                } relative`}
+                } relative flex items-center px-1`}
               >
                 <div
-                  className={`w-4 h-4 rounded-full bg-white absolute top-1 transition-transform ${
-                    notifications ? 'translate-x-6' : 'translate-x-1'
+                  className={`w-4 h-4 rounded-full bg-white transition-transform duration-300 ${
+                    notifications ? 'translate-x-6' : 'translate-x-0'
                   }`}
                 />
               </button>
+
             </div>
           </div>
         </div>
