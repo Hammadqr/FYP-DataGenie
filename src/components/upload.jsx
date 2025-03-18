@@ -68,19 +68,7 @@ const Work = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden">
-      {/* Navigation */}
-      <nav className="flex justify-between items-center px-6 py-4 bg-white dark:bg-gray-800 shadow-sm transition-colors duration-300">
-        <div className="flex items-center space-x-2">
-          <LayoutGrid className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-          <span className="text-xl font-semibold text-purple-600 dark:text-purple-400">DataGENIE</span>
-        </div>
-        <div className="flex space-x-6">
-          <span className="hover:text-purple-600 dark:hover:text-purple-400 cursor-pointer">Home</span>
-          <span className="hover:text-purple-600 dark:hover:text-purple-400 cursor-pointer">Projects</span>
-          <span className="hover:text-purple-600 dark:hover:text-purple-400 cursor-pointer">Settings</span>
-          <span className="hover:text-purple-600 dark:hover:text-purple-400 cursor-pointer">Contact</span>
-        </div>
-      </nav>
+     
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
