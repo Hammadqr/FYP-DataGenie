@@ -2,6 +2,11 @@ from flask import Flask, request, jsonify
 import joblib
 from sentence_transformers import SentenceTransformer
 import argparse
+from flask import Flask, request, jsonify, render_template
+from models.yolo_inference import YOLOInference
+
+app = Flask(__name__)
+yolo_model = YOLOInference()
 
 class DefectClassifier:
     """A wrapper class for the SVM defect classifier"""
@@ -49,12 +54,13 @@ class DefectClassifier:
         
         return predicted_label, confidence, top_predictions
 
-# Initialize Flask app
-app = Flask(__name__)
-
 # Global variable to store the model
 model = None
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+    
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""
@@ -95,6 +101,20 @@ def predict():
     
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route('/detect', methods=['POST'])
+def detect():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+
+    result = yolo_model.detect(file)
+    return jsonify(result)
+
 
 def load_model(model_path):
     """Load the model into the global variable"""
