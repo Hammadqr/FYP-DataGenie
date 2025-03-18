@@ -7,6 +7,9 @@ import SignupPage from './components/signup'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ImageGenerationPage from './components/generator';
+import Home from './components/home';
+import Contact from './components/contact';
+import Navbar from './components/navbar';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -14,11 +17,16 @@ function App() {
   return (
 
     <Router>
+      
+      <Navbar /> 
+      
       <Routes>
         <Route path = "/" element={<SignInPage/>} />   
         <Route path="/signup" element={<SignupPage/>} />
         <Route path="/signin" element={<SignInPage/>} /> 
         <Route path="/upload" element={<Work/>} />
+        <Route path="/home" element={<Home/>} />
+        <Route path="/contact" element={<Contact/>} />
         <Route path="/generator" element={<ImageGenerationPage/>} />
     </Routes>
   </Router>
