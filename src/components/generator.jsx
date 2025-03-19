@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Navbar from './navbar';
 
 // Simulated image folder (replace this with actual API call if needed)
 const imageFolder = [
@@ -32,6 +33,7 @@ const ImageGenerationPage = () => {
 
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-gray-100 overflow-auto p-4">
+      <Navbar/>
       <div className="bg-white shadow-xl rounded-xl p-6 w-full max-w-3xl">
         <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
           Generate Dataset of Images

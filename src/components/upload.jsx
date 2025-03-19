@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { LayoutGrid, Upload, Moon, Bell, Info } from 'lucide-react';
+import { Upload, Moon, Bell, Info } from 'lucide-react';
 import pexelsImage from '../assets/pexels1.jpg'; // Adjust the path as necessary
 import { useNavigate } from "react-router-dom";
 

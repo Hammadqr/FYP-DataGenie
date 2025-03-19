@@ -1,5 +1,4 @@
-import { LayoutGrid, Mail, Phone } from 'lucide-react'; 
-import { useNavigate } from 'react-router-dom';
+import { Mail, Phone } from 'lucide-react'; 
 import { useState } from 'react';
 
 const Contact = () => {
