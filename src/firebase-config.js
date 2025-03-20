@@ -1,8 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+// import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,9 +19,29 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+const provider = new GoogleAuthProvider();
 
-export { auth, db, storage };
+// Google Sign-In function
+const signInWithGoogle = async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    console.log("User Info:", user);
+    return user;
+  } catch (error) {
+    console.error("Google Sign-In Error:", error);
+  }
+};
+
+// Google Sign-Out function
+const signOutUser = async () => {
+  try {
+    await signOut(auth);
+    console.log("User signed out successfully");
+  } catch (error) {
+    console.error("Sign-Out Error:", error);
+  }
+};
+
+export { auth, signInWithGoogle, signOutUser };

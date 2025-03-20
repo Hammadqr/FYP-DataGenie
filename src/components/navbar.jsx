@@ -13,7 +13,7 @@ const Navbar = () => {
       {/* Navigation Links */}
       <div className="flex space-x-6">
         <NavLink
-          to="/"
+          to="/home"
           className={({ isActive }) =>
             `text-white hover:text-purple-400 transition ${
               isActive ? "text-purple-400" : ""

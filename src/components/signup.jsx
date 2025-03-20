@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import Axios for HTTP requests
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -8,32 +9,40 @@ const SignupPage = () => {
     password: "",
   });
 
-  const navigate = useNavigate();  // To navigate to login page after successful signup
+  const [error, setError] = useState(""); // For error messages
+  const [loading, setLoading] = useState(false); // For loading state
+  const navigate = useNavigate(); // To navigate after signup
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted: ", formData);
-
-    // Store user data in localStorage (in a simple object format)
-    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
-    existingUsers.push(formData);
-
-    localStorage.setItem("users", JSON.stringify(existingUsers));
-    alert("Signup successful! You can now login.");
-
-    // Redirect to login page
-    navigate("/signin");
+    setError(""); 
+    setLoading(true); 
+  
+    try {
+      // Send signup request to the backend
+      await axios.post("http://localhost:8080/api/auth/signup", formData);
+      
+      alert("Signup successful! You can now log in.");
+      navigate("/signin"); 
+    } catch (error) {
+      setError(error.response?.data?.message || "Signup failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
-
+  
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-4">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Sign Up</h2>
+
+        {error && <p className="text-red-500 text-center">{error}</p>} {/* Show error */}
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-600 font-medium mb-2" htmlFor="name">
@@ -50,6 +59,7 @@ const SignupPage = () => {
               required
             />
           </div>
+
           <div className="mb-4">
             <label className="block text-gray-600 font-medium mb-2" htmlFor="email">
               Email
@@ -65,6 +75,7 @@ const SignupPage = () => {
               required
             />
           </div>
+
           <div className="mb-4">
             <label className="block text-gray-600 font-medium mb-2" htmlFor="password">
               Password
@@ -80,13 +91,16 @@ const SignupPage = () => {
               required
             />
           </div>
+
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            disabled={loading}
           >
-            Sign Up
+            {loading ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
+
         <p className="text-gray-600 text-center mt-4">
           Already have an account?{" "}
           <a href="/signin" className="text-blue-500 hover:underline">

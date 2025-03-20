@@ -7,8 +7,9 @@ from werkzeug.utils import secure_filename
 # Configuration
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-MODEL_PATH = 'C:/Users/user1/Desktop/FYP_DataGenie/backend/best.pt'  # Update this path
-CLASSES_PATH = 'C:/Users/user1/Desktop/FYP_DataGenie/backend/classes.txt'  # Update this path
+MODEL_PATH = 'E:\\University\\FYP\\fyp-application\\backend\\best.pt'
+
+CLASSES_PATH = 'E:\\University\\FYP\\fyp-application\\backend\\classes.txt'  # Update this path
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
