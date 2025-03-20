@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB
-// connectDB();
+connectDB();
 
 app.use("/api/auth", router);
 app.use("/api/auth1", signin_router);

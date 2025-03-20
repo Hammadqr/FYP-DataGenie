@@ -25,7 +25,7 @@ const SignupPage = () => {
   
     try {
       // Send signup request to the backend
-      await axios.post("http://localhost:5000/api/auth/signup", formData);
+      await axios.post("http://localhost:8080/api/auth/signup", formData);
       
       alert("Signup successful! You can now log in.");
       navigate("/signin"); 

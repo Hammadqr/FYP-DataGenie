@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const FLASK_API_URL = 'http://localhost:5000'; // Change this if your Flask API is hosted elsewhere
+const FLASK_API_URL = 'http://localhost:5050'; // Change this if your Flask API is hosted elsewhere
 
 async function checkHealth() {
     try {

@@ -10,12 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.8.3",
+    "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
     "bun": "^1.1.38",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "firebase": "^11.4.0",
     "fyp-webapp": "file:",
     "jsonwebtoken": "^9.0.2",
     "latest-version": "^9.0.0",
@@ -24,6 +25,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.2",
+    "recharts": "^2.15.1",
     "swiper": "^11.2.5"
   },
   "devDependencies": {

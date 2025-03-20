@@ -48,7 +48,7 @@
 
 
 import express from "express";
-import { checkHealth, getPrediction } from "../controller/predict.js";
+import { checkHealth, getPrediction } from "../controller/predict-controller.js";
 
 const router = express.Router();
 

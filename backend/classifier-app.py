@@ -112,7 +112,7 @@ def main():
     parser = argparse.ArgumentParser(description="Defect Classifier API")
     parser.add_argument("--model", default="defect_classifier.joblib", 
                         help="Path to the defect classifier model file")
-    parser.add_argument("--port", type=int, default=5000, 
+    parser.add_argument("--port", type=int, default=5050, 
                         help="Port to run the API server on")
     parser.add_argument("--host", default="0.0.0.0", 
                         help="Host to run the API server on")
